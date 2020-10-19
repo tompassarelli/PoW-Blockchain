@@ -1,0 +1,25 @@
+{
+  "name": "pow-blockchain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npx parcel client/index.html",
+    "build": "npx parcel build client/index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^3.2.2",
+    "sass": "^1.27.0",
+    "tailwindcss": "^1.8.12",
+    "nodemon": "^2.0.5"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "elliptic": "^6.5.3",
+    "express": "^4.17.1",
+    "jayson": "^3.3.3",
+    "yargs": "15.3.1"
+  }
+}
