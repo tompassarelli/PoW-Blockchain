@@ -7,4 +7,4 @@ const db = {
 
 //db.blockchain.loadBlocks();
 
-module.exports = {db};
+module.exports = db;

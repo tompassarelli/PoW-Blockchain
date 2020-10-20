@@ -1,28 +1,37 @@
 <html>
-<body>
+<body class="font-mono mx-40 bg-gray-300 ">
   <!-- Users can create a miner, wallet, and manage both
     so we need to create basically two views for that probably -->
-  <div id=logo>
-    IceCoin
-  </div>
-  <div id="wallet">
-    Walllet 
-  </div>
-  <div id="miner"></div>
-  <div class="button" id="start-mining">
-  Start Mining!
+  <div class="flex flex-row bg-white py-4 mt-4 rounded-md">
+    <!-- <div id="logo">
+      <span class="icon-text">Blockchain Dashboard</span>
+    </div> -->
+    
+    <div id="miner" class="ml-4">
+      <span class="icon-text">Miner</span>
+    </div>
+    <div class="flex flex-col space-y-2 ml-8">
+        <div class="button" id="start-mining">
+        Start Mining!
+        </div>
+
+        <div class="button" id="stop-mining">
+        Stop Mining!
+        </div>
+    </div>
+    <div id="wallet" class="ml-40">
+      <span class="icon-text">Walllet</span>
+    </div>
   </div>
 
-  <div class="button" id="stop-mining">
-  Stop Mining!
-  </div>
-
-  <h2>
-  Current Balance
-  </h2>
-  
-  <div id="balance">
-  0
+  <div class="mt-4">
+    <h2>
+    Current Balance
+    </h2>
+    
+    <div id="balance">
+    0
+    </div>
   </div>
   <script src="./index.js"></script>
 </body>

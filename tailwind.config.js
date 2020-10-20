@@ -5,8 +5,20 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: theme => ({
+        'hero-texture': ".bg-gradient-to-bl",
+        'footer-texture': ".bg-gradient-to-bl",
+      }),
+      spacing: {
+        '72': '18rem',
+        '84': '21rem',
+        '96': '24rem',
+      }
+    },
   },
-  variants: {},
+  variants: {
+    fontFamily: ['responsive', 'hover', 'focus'],
+  },
   plugins: [],
 }

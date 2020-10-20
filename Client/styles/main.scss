@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Muli', sans-serif;
   font-weight: 300;
 }
 
 input {
-  padding: 9px 25px;
+  padding: 8px 25px;
   border-radius: 5px;
   text-transform: uppercase;
 }
@@ -20,21 +19,41 @@ input {
   padding: 5px 0;
 }
 
-.wallet {
+.icon-text {
+  display:block;
+  padding-left: .6em
+}
+
+#wallet {
   &:before {
-    content: url(../images/bitcoin-wallet.png)
+    background-image: url(../images/bitcoin-wallet.png);
+    background-size: 40px 40px;
+    display: inline-block;
+    width: 40px; 
+    height: 40px;
+    content: ""
   }  
 }
 
-.miner {
+#miner {
   &:before {
-    content: url(../images/mining.png)
+    background-image: url(../images/mining.png);
+    background-size: 40px 40px;
+    display: inline-block;
+    width: 40px; 
+    height: 40px;
+    content: ""
   }  
 }
 
-.logo {
+#logo {
   &:before {
-    content: url(../images/blockchain-icon.svg)
+    background-image: url(../images/blockchain-icon.svg);
+    background-size: 40px 40px;
+    display: inline-block;
+    width: 40px; 
+    height: 40px;
+    content: ""
   }
 }
 

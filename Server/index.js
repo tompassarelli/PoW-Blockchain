@@ -11,7 +11,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-console.log(db.db);
+console.log(db.blockchain);
 miner.setBlockchain(db.blockchain);
 miner.startMining();
 
