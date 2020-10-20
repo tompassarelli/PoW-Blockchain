@@ -90,9 +90,6 @@ class Miner {
     const coinbaseTX = new Transaction([], [coinbaseUTXO]);
     block.addTransaction(coinbaseTX);
     
-    
-    block.addTransaction(this.mempool.pop())
-
     while(BigInt('0x' + block.hash()) >= TARGET_DIFFICULTY) {
       block.nonce++;
     }

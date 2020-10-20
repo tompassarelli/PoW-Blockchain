@@ -1,6 +1,5 @@
 const {miner} = require('../Services/miner')
 const {walletservice} = require('../Services/walletservice')
-const {startMining, stopMining} = require('../Services/miner');
 const {blockchain} = require('../Services/db');
 const {PORT} = require('../config');
 const express = require('express');
@@ -17,12 +16,12 @@ miner.startMining();
 app.post('/', (req, res) => {
   const {method, params} = req.body;
   if(method === 'startMining') {
-      startMining();
+      miner.startMining();
       res.send({ blockNumber: blockchain.blockHeight() });
       return;
   }
   if(method === 'stopMining') {
-      stopMining();
+      miner.stopMining();
       res.send({ blockNumber: blockchain.blockHeight() });
       return;
   }

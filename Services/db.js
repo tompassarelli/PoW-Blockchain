@@ -5,4 +5,6 @@ const db = {
   blockchain: new Blockchain(),
 }
 
+db.blockchain.loadBlocks();
+
 module.exports = db;

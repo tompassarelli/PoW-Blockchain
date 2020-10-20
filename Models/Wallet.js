@@ -1,15 +1,17 @@
 const {PUBLIC_KEY} = require('../config');
-const blockchain = require('./Blockchain')
-const walletmain = require('./WalletMain')
 
 class Wallet {
   constructor(publicKey) {
-    this.blockchain = blockchain,
-    this.publicKey = publicKey
+    this.accessKey = publicKey,
+    this.utxoIds = [];
   }
 
-  pushAddress(publicKey) {
-    blockchain.addAddress(publicKey);
+  pushAddress(publicKey, db) {
+    db.blockchain.addAddress(publicKey);
+  }
+
+  getBalance(db) {
+    db.blockchain.getBalance()
   }
 
 }

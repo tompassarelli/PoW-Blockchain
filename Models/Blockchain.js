@@ -1,4 +1,5 @@
 const fs = require('fs');
+const utxos = require('./UTXO');
 
 class Blockchain {
   // init blockchain with no blocks if no file exists
@@ -8,7 +9,7 @@ class Blockchain {
     this.addresses = [];
   }
 
-  constructor(localdb) {
+  loadBlocks() {
   
     try {
       let rawdata = fs.readFileSync('blockchain.json');
@@ -16,8 +17,9 @@ class Blockchain {
       // this.setHead()
     } catch (err) {
       console.log(err)
+      console.log('you may still start the blockchain from ground zero')
     }
-   }
+  }
   // should also have merkle root
   addBlock(block) {
     this.blocks.push(block)
@@ -41,7 +43,30 @@ class Blockchain {
   }
 
   addAddress(publicKey) {
-    this.addresses.push(publicKey);
+    // somehow the blockchain will need to verify via a signed transaction it is ok
+    // to add this address to the public address space
+    this.addresses.push(publicKey)
+  }
+
+  getUtxosByAddress(publicKey) {
+
+    var utxoids = {};
+
+    this.blocks.forEach((block) => {
+      block.transactions.forEach((tx) => {
+        tx.utxos.forEach((utxo) => {
+          if (tx.utxo.owner = publicKey && !tx.utxo.spent) {
+            utxoids[tx.utxo.id].push(tx.utxo.id);
+          }
+        })
+      })
+    })
+    
+    return utxoids
+  }
+
+  getBalance(address) {
+    return this.addresses[address]
   }
 }
 

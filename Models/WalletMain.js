@@ -1,7 +1,6 @@
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 const wallet = require('./Wallet')
-const blockchain = require('./Blockchain')
 
 class WalletMain {
   constructor() {
