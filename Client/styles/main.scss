@@ -20,16 +20,21 @@ input {
   padding: 5px 0;
 }
 
+.wallet {
+  &:before {
+    content: url(../images/bitcoin-wallet.png)
+  }  
+}
+
+.miner {
+  &:before {
+    content: url(../images/mining.png)
+  }  
+}
+
 .logo {
-  max-height: 100%;
-	max-width: 100%;
-	width:100px;
-  height:150px;
-  background-size: contain;
-  background-image: url(../images/blockchain-icon.svg);
-  display: flex;
-  &:after {
-    content: "PoW-Blockchain-Simulator";
+  &:before {
+    content: url(../images/blockchain-icon.svg)
   }
 }
 

@@ -1,11 +1,10 @@
 const fs = require('fs');
-const utxos = require('./UTXO');
 
 class Blockchain {
   // init blockchain with no blocks if no file exists
   // if file exists, then it should bootstrap with all existing work
   constructor() {
-    this.block = [];
+    this.blocks = [];
     this.addresses = [];
   }
 

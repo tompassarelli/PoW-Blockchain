@@ -1,22 +1,47 @@
+const {VERSION} = require('../config')
 const Block = require('./Block');
 const Transaction = require('./Transaction');
-const UTXO = require('./UTXO');
 const {PUBLIC_KEY} = require('../config');
-const TARGET_DIFFICULTY = BigInt("0x0" + "F".repeat(63));
+const TARGET_DIFFICULTY = BigInt("0x000" + "F".repeat(61));
 const BLOCK_REWARD = 10;
 
 
 class Miner {
   // todo - mempool could be saved?
   constructor() {
-    this.mempool = [];
+    this.mempool = [{}];
     this.mining = false;
     this.validating = false;
   }
 
+  mempoolTest() {
+
+    var tx = new Transaction({
+      VERSION: VERSION,
+      inputs: [{
+        to: "address",
+        from: "address" 
+      }],
+      outputs:  [{
+        to: "address",
+        from: "address" 
+      }],
+      txID: "hash",
+      txFee: 3,
+      signature: 4104104,
+    })
+    this.mempool.push(tx)
+  }
+
+  setBlockchain(db) {
+    this.blockchain = db;
+  }
+
   startMining() {
+    console.log(this.mining)
     this.mining = true;
-    mine();
+    console.log(this.mining)
+    this.mine();
   }
 
   stopMining() {
@@ -54,27 +79,12 @@ class Miner {
       console.log("turn off your miner with stopMining to start validating")
       return;
     } 
-
-    const coinbaseUTXO = new UTXO(PUBLIC_KEY, BLOCK_REWARD);
-    const coinbaseTX = new Transaction([], [coinbaseUTXO]);
-    block.addTransaction(coinbaseTX);
-    
-    
-    block.addTransaction(this.mempool.pop())
-
-    while(BigInt('0x' + block.hash()) >= TARGET_DIFFICULTY) {
-      block.nonce++;
-    }
-
-    db.blockchain.addBlock(block);
-
-    console.log(`Mined block #${db.blockchain.blockHeight()} with a hash of ${block.hash()} at nonce ${block.nonce}`);
-
-    setTimeout(mine, 2500);
   }
 
 
   mine() {
+    console.log(this.mining);
+    console.log(this);
     if(this.validating) {
       console.log("stop validating to mine")
       return;
@@ -86,22 +96,23 @@ class Miner {
     // after instantiating block we will need to wait for a transaction to be mined while none exist in mempool
     const block = new Block();
 
-    const coinbaseUTXO = new UTXO(PUBLIC_KEY, BLOCK_REWARD);
-    const coinbaseTX = new Transaction([], [coinbaseUTXO]);
-    block.addTransaction(coinbaseTX);
+    //const coinbaseUTXO = new Transaction(
+    //  null, 
+    //  null, 
+    //  PUBLIC_KEY, 
+    //  BLOCK_REWARD);
+    //block.addTransaction(coinbaseTX);
     
     while(BigInt('0x' + block.hash()) >= TARGET_DIFFICULTY) {
       block.nonce++;
     }
+    this.blockchain.addBlock(block);
 
-    db.blockchain.addBlock(block);
+    console.log(`Mined block #${this.blockchain.blockHeight()} with a hash of ${block.hash()} at nonce ${block.nonce}`);
+   
+    setTimeout(this.mine.bind(this), 1000);
 
-    console.log(`Mined block #${db.blockchain.blockHeight()} with a hash of ${block.hash()} at nonce ${block.nonce}`);
-
-    setTimeout(mine, 2500);
   }
-
-
 }
 
 module.exports = Miner;

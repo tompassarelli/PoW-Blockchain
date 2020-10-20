@@ -1,25 +1,19 @@
-const {VERSION} = require('../config')
-const utxos = require('./UTXO');
-
 class Transaction {
   // ok so each input should look like "alice: 5btc or a:5btc bill:3btc"
-  constructor(inputs, outputs, signature, txFee, txID, version) {
-    this.version = VERSION;
-    this.txID = 0;
+  constructor(version, inputs, outputs, txid, txFee, signature) {
+    this.version = version;
     this.inputs = inputs; 
     this.outputs = outputs;
-    this.signature = signature;
+    this.txID = txid;
     this.txFee = txFee;
-    this.utxos = utxos;
+    this.signature = signature;
   }
   execute() {
     this.inputs.forEach((input) => {
       input.spent = true;
     });
     this.outputs.forEach((output) => {
-      this.utxos.push({
-        
-      });
+      output.spent = false;
     });
   }
 }

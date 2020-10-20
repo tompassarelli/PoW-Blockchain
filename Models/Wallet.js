@@ -1,8 +1,8 @@
 const {PUBLIC_KEY} = require('../config');
 
 class Wallet {
-  constructor(publicKey) {
-    this.accessKey = publicKey,
+  constructor() {
+    this.accessKey = PUBLIC_KEY;
     this.utxoIds = [];
   }
 
@@ -14,6 +14,9 @@ class Wallet {
     db.blockchain.getBalance()
   }
 
+  collectUTXOs() {
+
+  }
 }
 
 module.exports = Wallet;

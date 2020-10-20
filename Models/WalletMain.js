@@ -4,9 +4,9 @@ const wallet = require('./Wallet')
 
 class WalletMain {
   constructor() {
-    this.wallets = wallet.foreach((wallet) => {
-      this.wallets.push(wallet)
-    })
+   // this.wallets = wallet.forEach((wallet) => {
+      this.wallets = wallet
+    //})
   }
 
   genWallet() {
