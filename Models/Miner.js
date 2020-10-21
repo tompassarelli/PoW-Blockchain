@@ -81,10 +81,11 @@ class Miner {
     } 
   }
 
+  addTransaction(block, tx) {
+    block.transactoins.push(tx);
+  }
 
   mine() {
-    console.log(this.mining);
-    console.log(this);
     if(this.validating) {
       console.log("stop validating to mine")
       return;
@@ -103,9 +104,11 @@ class Miner {
     //  BLOCK_REWARD);
     //block.addTransaction(coinbaseTX);
     
-    while(BigInt('0x' + block.hash()) >= TARGET_DIFFICULTY) {
+    while(block.txHash >= TARGET_DIFFICULTY) {
       block.nonce++;
+      block.txHash = BigInt('0x' + block.hash());
     }
+    
     this.blockchain.addBlock(block);
 
     console.log(`Mined block #${this.blockchain.blockHeight()} with a hash of ${block.hash()} at nonce ${block.nonce}`);

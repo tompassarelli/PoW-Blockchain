@@ -9,6 +9,7 @@ class Block {
     this.timestamp = Date.now()
     this.nonce = 0;
     this.transactions = [];
+    this.txHash = "";
   }
   addTransaction(tx) {
     this.transactions.push(tx)

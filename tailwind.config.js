@@ -5,17 +5,27 @@ module.exports = {
   },
   purge: [],
   theme: {
+    fontFamily: {
+      'sans': "",
+      'display': ['Gilroy', 'sans-serif'],
+      'body': ['Graphik', 'sans-serif'],
+    },  
+    boxShadow: {
+      outline: '0 0 0 3px rgba(0, 0, 0, 0.5)',
+    },
     extend: {
-      backgroundImage: theme => ({
-        'hero-texture': ".bg-gradient-to-bl",
-        'footer-texture': ".bg-gradient-to-bl",
-      }),
       spacing: {
         '72': '18rem',
         '84': '21rem',
         '96': '24rem',
-      }
-    },
+        '108': '27rem',
+        '120': '30rem',
+        '144': '36rem',
+      },
+      opacity: {
+        '85': '0.85',
+      },
+    }
   },
   variants: {
     fontFamily: ['responsive', 'hover', 'focus'],
