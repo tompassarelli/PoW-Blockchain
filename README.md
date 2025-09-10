@@ -1,1 +1,1 @@
-soon this will do something..
+this is a proof of work blockchain written in javascript
